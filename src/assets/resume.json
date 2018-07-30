@@ -1,0 +1,64 @@
+{
+  "avatart": "/static/logo.png",
+  "cnName": "吴怡锋",
+  "enName": "Evont Ng",
+  "job": "前端开发工程师",
+  "experience": [
+    {
+      "company": "广州唯彩会网络科技有限公司",
+      "period": "17.05 - 至今",
+      "post": "前端开发工程师",
+      "project": [
+        {
+          "name": "红单达人",
+          "desc": [
+            "独立负责使用Koa.js 作为中间层进行接口转发以及微信服务开发；使用EJS 及Vue.js 开发前端页面，使得网站SEO友好，渲染效率提高",
+            "对原有项目进行重构及前后端同构，优化了原有代码架构，完成了项目的前端工程化，并负责编写测试用例及接口文档，使网站的整体架构变得更加清晰可读，提高了代码复用性",
+            "设计错误收集规则，对Node 端发生的报错进行收集上报，并设定报警规则对高频错误进行邮件提醒，使得错误得以及时处理，同时也能及时地发现恶意攻击并进行屏蔽",
+            "使用Egret 引擎开发微信小游戏，负责多个专题活动页面的开发实现"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "广州智壹网络科技有限公司",
+      "period": "16.03 - 17.05",
+      "post": "前端开发工程师/UI设计师",
+      "project": [
+        {
+          "name": "Uneedbid",
+          "desc": [
+            "负责移动版网站UI 设计及活动Banner及专题设计，并使用Jquery 进行整站的前端开发",
+            "开发浏览器插件（EasyBuy 购物助手），使用PhantomJs开发Yahoobid 自动竞拍系统登录爬虫",
+            "使用React Native 进行App 开发"
+          ]
+        },
+        {
+          "name": "代购湾",
+          "desc": [
+            "独立负责移动版及PC版网站的前端开发，并负责对产品的用户体验提出优化建议及改善",
+            "重构项目代码，提高整体代码质量"
+          ]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "evontgoh@foxmail.com",
+    "phone": "+86 13169620297",
+    "blog": "https://evont.github.io/",
+    "github": "https://github.com/evont"
+  },
+  "education": {
+    "school": "广东科学技术职业学院",
+    "period": "13.09 - 16.07",
+    "subject": "软件工程（Java 网络编程）"
+  },
+  "skill": [
+    "熟悉JavaScript编程，熟练使用Vue、React、Zepto等前端框架，具有良好的代码规范能力",
+    "熟悉使用Koa.js，了解PouchDB的使用，有微信服务开发实践经验",
+    "熟练使用Typescript 基于Egret 引擎进行2D游戏开发，对P2.js 物理引擎熟悉使用并进行过文档翻译",
+    "熟悉使用Webpack、Gulp等前端工程化工具，熟练使用PostCss、Sass",
+    "拥有良好的产品思维，能够分析并改善产品的体验设计"
+  ]
+}
