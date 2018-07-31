@@ -1,6 +1,17 @@
 <template>
   <div class="resume">
-    <div class="resume-head"></div>
+    <div class="column resume-head">
+      <div class="column-left resume-head-left">
+        <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
+      </div>
+      <div class="column-right resume-head-right">
+        <h1 class="nickname">
+          {{ resume.cnName }}
+          <span class="nickname-en">{{ resume.enName }}</span>
+        </h1>
+        <h3 class="job">{{ resume.job }}</h3>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -59,18 +70,54 @@ export default {
 </script>
 
 <style scoped>
+.column {
+  display: flex;
+  &-left {
+    flex: 1;
+  }
+  &-right {
+    width: 55%;
+  }
+}
 .resume {
   position: relative;
+  padding: 20px 0 0 0;
   &::before {
     content: '';
     display: block;
-    width: 80%;
+    width: 90%;
     height: 20px;
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
     margin: auto;
     background: #333;
+  }
+  &-head {
+    padding: 25px 0;
+    align-items: center;
+    text-align: left;
+    .avatar {
+      margin: 0 20px;
+      width: 100px;
+      height: 100px;
+    }
+    .nickname {
+      font-size: 24px;
+      font-weight: 400;
+      &-en {
+        margin-left: 10px;
+        font-size: 18px;
+      }
+    }
+    .job {
+      font-size: 16px;
+      font-weight: 300;
+    }
+    &-left {
+      text-align: right;
+    }
   }
 }
 </style>
