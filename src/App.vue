@@ -18,12 +18,14 @@ export default {
 }
 html, body {
   height: 100%;
-  overflow: hidden;
   font-size: 14px;/* no */
 }
 a {
   text-decoration: none;
   color: #2c3e50;
+}
+ul {
+  list-style: none;
 }
 #app {
   height: 100%;
