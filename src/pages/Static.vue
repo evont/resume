@@ -1,62 +1,75 @@
 <template>
-  <div class="resume">
-    <div class="m-column head">
-      <div class="m-column-left head-left">
-        <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
-      </div>
-      <div class="m-column-right head-right">
-        <h1 class="nickname">
-          {{ resume.cnName }}
-          <span class="nickname-en">{{ resume.enName }}</span>
-        </h1>
-        <h3 class="job">{{ resume.job }}</h3>
-      </div>
-    </div>
-    <div class="m-column block">
-      <div class="m-column-left">
-        <h3 class="block-head">工作经历</h3>
-      </div>
-      <div class="m-column-right">
-        <div class="block-lead"></div>
-      </div>
-    </div>
-    <ul>
-      <li class="m-column block-content" v-for="(item, index) in resume.experience" :key="index">
-        <div class="m-column-left block-left block-left_lead">
-          <h4 class="block-content-lead">
-            <p class="title">
-              {{ item.company }} /
-              <span class="title-addition">{{ item.period }}</span>
-            </p>
-            <b class="addition">{{ item.post }}</b>
-          </h4>
+  <div class="content">
+    <div class="resume" id="resume">
+      <div class="m-column head">
+        <div class="m-column-left head-left">
+          <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
         </div>
-        <div class="m-column-right block-right block-right_lead">
-          <ul>
-            <li class="block-content-desc" v-for="(exp, eInd) in item.project" :key="eInd">
-              <h3 class="title">{{ exp.name }}</h3>
-              <ol class="content">
-                <li v-for="(desc, dInd) in exp.desc" :key="dInd">
-                  {{ desc }}
-                </li>
-              </ol>
+        <div class="m-column-right head-right">
+          <h1 class="nickname">
+            {{ resume.cnName }}
+            <span class="nickname-en">{{ resume.enName }}</span>
+          </h1>
+          <h3 class="job">{{ resume.job }}</h3>
+        </div>
+      </div>
+      <div class="m-column block">
+        <div class="m-column-left">
+          <h3 class="block-head">工作经历</h3>
+        </div>
+        <div class="m-column-right">
+          <div class="block-lead"></div>
+        </div>
+      </div>
+      <ul>
+        <li class="m-column block-content" v-for="(item, index) in resume.experience" :key="index">
+          <div class="m-column-left block-left block-left_lead">
+            <h4 class="block-content-lead">
+              <p class="title">
+                {{ item.company }} /
+                <span class="title-addition">{{ item.period }}</span>
+              </p>
+              <b class="addition">{{ item.post }}</b>
+            </h4>
+          </div>
+          <div class="m-column-right block-right block-right_lead">
+            <ul>
+              <li class="block-content-desc" v-for="(exp, eInd) in item.project" :key="eInd">
+                <h3 class="title">{{ exp.name }}</h3>
+                <ol class="content">
+                  <li v-for="(desc, dInd) in exp.desc" :key="dInd">
+                    {{ desc }}
+                  </li>
+                </ol>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <div class="m-column block">
+        <div class="m-column-left">
+          <h3 class="block-head">联系方式</h3>
+          <ul class="contact">
+            <li class="contact-item" v-for="(item, index) in resume.contact"
+                :key="index" :data-type="index">
+              {{ item }}
             </li>
           </ul>
         </div>
-      </li>
-    </ul>
-    <div class="m-column block">
-      <div class="m-column-left">
-        <h3 class="block-head">联系方式</h3>
-        <ul class="contact">
-          <li class="contact-item" v-for="(item, index) in resume.contact"
-              :key="index" :data-type="index">
-            {{ item }}
-          </li>
-        </ul>
+        <div class="m-column-right">
+          <h3 class="block-head">专业技能</h3>
+          <ul class="skill">
+            <li class="skill-item" v-for="(item, index) in resume.skill"
+                :key="index" :data-type="index">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="m-column-right">
-      </div>
+    </div>
+    <div class="option">
+      <a @click.prevent="render2Pic">导出为图片</a>
+      <a @click.prevent="render2Pdf">导出为PDF</a>
     </div>
   </div>
 </template>
@@ -72,44 +85,74 @@ export default {
   data() {
     return {
       resume,
+      canvas: null,
     };
   },
-  created() {
-    // this.render();
+  mounted() {
+    this.$nextTick(() => {
+      this.render();
+    });
   },
   methods: {
     render() {
-      html2canvas(document.body).then((canvas) => {
-        const contentWidth = canvas.width;
-        const contentHeight = canvas.height;
-        // 一页pdf显示html页面生成的canvas高度;
-        const pageHeight = (contentWidth / 592.28) * 841.89;
-        // 未生成pdf的html页面高度
-        let leftHeight = contentHeight;
-        // 页面偏移
-        let position = 0;
-        // a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-        const imgWidth = 595.28;
-        const imgHeight = (592.28 / contentWidth) * contentHeight;
-        const pageData = canvas.toDataURL('image/jpeg', 1.0);
-        const pdf = new JsPDF('', 'pt', 'a4');
-        // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
-        // 当内容未超过pdf一页显示的范围，无需分页
-        if (leftHeight < pageHeight) {
-          pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
-        } else {
-          while (leftHeight > 0) {
-            pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight);
-            leftHeight -= pageHeight;
-            position -= 841.89;
-            // 避免添加空白页
-            if (leftHeight > 0) {
-              pdf.addPage();
-            }
+      const cntElem = document.querySelector('#resume');
+      const shareContent = cntElem;// 需要截图的包裹的（原生的）DOM 对象
+      const width = shareContent.offsetWidth; // 获取dom 宽度
+      const height = shareContent.offsetHeight; // 获取dom 高度
+      const canvas = document.createElement('canvas'); // 创建一个canvas节点
+      const scale = 4; // 定义任意放大倍数 支持小数
+      canvas.width = width * scale; // 定义canvas 宽度 * 缩放
+      canvas.height = height * scale; // 定义canvas高度 *缩放
+      canvas.getContext('2d').scale(scale, scale); // 获取context,设置scale
+      const opts = {
+        scale, // 添加的scale 参数
+        canvas, // 自定义 canvas
+        width, // dom 原始宽度
+        height,
+        useCORS: true, // 【重要】开启跨域配置
+      };
+      html2canvas(shareContent, opts).then((cvs) => {
+        this.canvas = cvs;
+      });
+    },
+    render2Pic() {
+      const { canvas } = this;
+      const imgURL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+      window.open(imgURL);
+    },
+    render2Pdf() {
+      const { canvas } = this;
+      const contentWidth = canvas.width;
+      const contentHeight = canvas.height;
+      // a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+      const a4Width = 595.28;
+      const imgWidth = 555.28;
+      // 一页pdf显示html页面生成的canvas高度;
+      const pageHeight = (contentWidth / imgWidth) * 841.89;
+      // 未生成pdf的html页面高度
+      let leftHeight = contentHeight;
+      // 页面偏移
+      let position = 0;
+      
+      const imgHeight = (imgWidth / contentWidth) * contentHeight;
+      const pageData = canvas.toDataURL('image/jpeg', 1.0);
+      const pdf = new JsPDF('', 'pt', 'a4');
+      // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+      // 当内容未超过pdf一页显示的范围，无需分页
+      if (leftHeight < pageHeight) {
+        pdf.addImage(pageData, 'JPEG', (a4Width - imgWidth) / 2, 0, imgWidth, imgHeight);
+      } else {
+        while (leftHeight > 0) {
+          pdf.addImage(pageData, 'JPEG', (a4Width - imgWidth) / 2, position, imgWidth, imgHeight);
+          leftHeight -= pageHeight;
+          position -= 841.89;
+          // 避免添加空白页
+          if (leftHeight > 0) {
+            pdf.addPage();
           }
         }
-        pdf.save('content.pdf');
-      });
+      }
+      pdf.save(`${this.resume.cnName}-${this.resume.job}-简历.pdf`);
     },
   },
 };
@@ -271,6 +314,14 @@ export default {
     &[data-type='github']::after {
       background-image: url('../assets/img/icon-github.png');
     }
+  }
+}
+.skill {
+  padding: 15px 0;
+  text-align: left;
+  font-size: 10px;
+  &-item {
+    margin-top: 4px;
   }
 }
 </style>
