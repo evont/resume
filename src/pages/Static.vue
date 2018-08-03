@@ -1,75 +1,78 @@
 <template>
   <div class="content">
-    <div class="resume" id="resume">
-      <div class="m-column head">
-        <div class="m-column-left head-left">
-          <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
-        </div>
-        <div class="m-column-right head-right">
-          <h1 class="nickname">
-            {{ resume.cnName }}
-            <span class="nickname-en">{{ resume.enName }}</span>
-          </h1>
-          <h3 class="job">{{ resume.job }}</h3>
-        </div>
-      </div>
-      <div class="m-column block">
-        <div class="m-column-left">
-          <h3 class="block-head">工作经历</h3>
-        </div>
-        <div class="m-column-right">
-          <div class="block-lead"></div>
-        </div>
-      </div>
-      <ul>
-        <li class="m-column block-content" v-for="(item, index) in resume.experience" :key="index">
-          <div class="m-column-left block-left block-left_lead">
-            <h4 class="block-content-lead">
-              <p class="title">
-                {{ item.company }} /
-                <span class="title-addition">{{ item.period }}</span>
-              </p>
-              <b class="addition">{{ item.post }}</b>
-            </h4>
+    <div class="option">
+      <a class="option-item" @click.prevent="render2Pic">导出为图片</a>
+      <a class="option-item" @click.prevent="render2Pdf">导出为PDF</a>
+    </div>
+    <div class="main">
+      <div class="resume" id="resume" :style="{ zoom: scaleRatio }">
+        <div class="m-column head">
+          <div class="m-column-left head-left">
+            <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
           </div>
-          <div class="m-column-right block-right block-right_lead">
-            <ul>
-              <li class="block-content-desc" v-for="(exp, eInd) in item.project" :key="eInd">
-                <h3 class="title">{{ exp.name }}</h3>
-                <ol class="content">
-                  <li v-for="(desc, dInd) in exp.desc" :key="dInd">
-                    {{ desc }}
-                  </li>
-                </ol>
+          <div class="m-column-right head-right">
+            <h1 class="nickname">
+              {{ resume.cnName }}
+              <span class="nickname-en">{{ resume.enName }}</span>
+            </h1>
+            <h3 class="job">{{ resume.job }}</h3>
+          </div>
+        </div>
+        <div class="m-column block">
+          <div class="m-column-left">
+            <h3 class="block-head">工作经历</h3>
+          </div>
+          <div class="m-column-right">
+            <div class="block-lead"></div>
+          </div>
+        </div>
+        <ul>
+          <li class="m-column block-content"
+            v-for="(item, index) in resume.experience" :key="index">
+            <div class="m-column-left block-left block-left_lead">
+              <h4 class="block-content-lead">
+                <p class="title">
+                  {{ item.company }} /
+                  <span class="title-addition">{{ item.period }}</span>
+                </p>
+                <b class="addition">{{ item.post }}</b>
+              </h4>
+            </div>
+            <div class="m-column-right block-right block-right_lead">
+              <ul>
+                <li class="block-content-desc" v-for="(exp, eInd) in item.project" :key="eInd">
+                  <h3 class="title">{{ exp.name }}</h3>
+                  <ol class="content">
+                    <li v-for="(desc, dInd) in exp.desc" :key="dInd">
+                      {{ desc }}
+                    </li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="m-column block">
+          <div class="m-column-left">
+            <h3 class="block-head">联系方式</h3>
+            <ul class="contact">
+              <li class="contact-item" v-for="(item, index) in resume.contact"
+                  :key="index" :data-type="index">
+                {{ item }}
               </li>
             </ul>
           </div>
-        </li>
-      </ul>
-      <div class="m-column block">
-        <div class="m-column-left">
-          <h3 class="block-head">联系方式</h3>
-          <ul class="contact">
-            <li class="contact-item" v-for="(item, index) in resume.contact"
-                :key="index" :data-type="index">
-              {{ item }}
-            </li>
-          </ul>
-        </div>
-        <div class="m-column-right">
-          <h3 class="block-head">专业技能</h3>
-          <ul class="skill">
-            <li class="skill-item" v-for="(item, index) in resume.skill"
-                :key="index" :data-type="index">
-              {{ item }}
-            </li>
-          </ul>
+          <div class="m-column-right">
+            <h3 class="block-head">专业技能</h3>
+            <ul class="skill">
+              <li class="skill-item" v-for="(item, index) in resume.skill"
+                  :key="index" :data-type="index">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="option">
-      <a @click.prevent="render2Pic">导出为图片</a>
-      <a @click.prevent="render2Pdf">导出为PDF</a>
     </div>
   </div>
 </template>
@@ -80,18 +83,25 @@ import JsPDF from 'jspdf';
 
 import resume from '../assets/resume.json';
 
+const a4Width = 595.28;
+// const a4Height = 841.89;
+
 export default {
   name: 'Static',
   data() {
     return {
       resume,
       canvas: null,
+      scaleRatio: 1,
     };
   },
   mounted() {
     this.$nextTick(() => {
       this.render();
     });
+    window.onresize = () => {
+      this.scaleRatio = window.innerWidth / a4Width;
+    };
   },
   methods: {
     render() {
@@ -125,7 +135,6 @@ export default {
       const contentWidth = canvas.width;
       const contentHeight = canvas.height;
       // a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-      const a4Width = 595.28;
       const imgWidth = 555.28;
       // 一页pdf显示html页面生成的canvas高度;
       const pageHeight = (contentWidth / imgWidth) * 841.89;
@@ -133,7 +142,6 @@ export default {
       let leftHeight = contentHeight;
       // 页面偏移
       let position = 0;
-      
       const imgHeight = (imgWidth / contentWidth) * contentHeight;
       const pageData = canvas.toDataURL('image/jpeg', 1.0);
       const pdf = new JsPDF('', 'pt', 'a4');
@@ -158,9 +166,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
-  max-width: 595.28px;
+  max-width: 100%;
   min-width: 595.28px;
 }
 .m-column {
@@ -172,14 +180,32 @@ export default {
   }
   &-right {
     width: 55%;
+    text-align: right;
   }
   &.block {
     margin-top: 10px;
   }
 }
+.option {
+  box-shadow: 0 0 2px rgba(0,0,0,0.25);
+  &-item {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-right: 1px solid #eee;/* no */
+    font-size: 12px;
+  }
+}
+.main {
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+}
 .resume {
   position: relative;
   padding: 20px 0 0 0;
+  width: 595.28px;
+  margin: auto;
   &::before {
     content: '';
     display: block;
@@ -215,6 +241,9 @@ export default {
   }
   &-left {
     text-align: right;
+  }
+  &-right {
+    text-align: left;
   }
 }
 .block {
@@ -303,16 +332,16 @@ export default {
       background-size: contain;
     }
     &[data-type='email']::after {
-      background-image: url('../assets/img/icon-mail.png');
+      background-image: url('../assets/img/icon-mail.svg');
     }
     &[data-type='phone']::after {
-      background-image: url('../assets/img/icon-phone.png');
+      background-image: url('../assets/img/icon-phone.svg');
     }
     &[data-type='blog']::after {
-      background-image: url('../assets/img/icon-link.png');
+      background-image: url('../assets/img/icon-link.svg');
     }
     &[data-type='github']::after {
-      background-image: url('../assets/img/icon-github.png');
+      background-image: url('../assets/img/icon-github.svg');
     }
   }
 }
