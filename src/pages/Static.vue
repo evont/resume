@@ -84,7 +84,7 @@ import JsPDF from 'jspdf';
 import resume from '../assets/resume.json';
 
 const a4Width = 595.28;
-// const a4Height = 841.89;
+const a4Height = 841.89;
 
 export default {
   name: 'Static',
@@ -107,18 +107,19 @@ export default {
     render() {
       const cntElem = document.querySelector('#resume');
       const shareContent = cntElem;// 需要截图的包裹的（原生的）DOM 对象
-      const width = shareContent.offsetWidth; // 获取dom 宽度
-      const height = shareContent.offsetHeight; // 获取dom 高度
+      const width = shareContent.offsetWidth + 30; // 获取dom 宽度
+      const height = shareContent.offsetHeight + 30; // 获取dom 高度
       const canvas = document.createElement('canvas'); // 创建一个canvas节点
       const scale = 4; // 定义任意放大倍数 支持小数
-      canvas.width = width * scale; // 定义canvas 宽度 * 缩放
-      canvas.height = height * scale; // 定义canvas高度 *缩放
+      canvas.width = a4Width; // 定义canvas 宽度 * 缩放
+      canvas.height = a4Height; // 定义canvas高度 *缩放
       canvas.getContext('2d').scale(scale, scale); // 获取context,设置scale
       const opts = {
         scale, // 添加的scale 参数
         canvas, // 自定义 canvas
         width, // dom 原始宽度
         height,
+        x: -15,
         useCORS: true, // 【重要】开启跨域配置
       };
       html2canvas(shareContent, opts).then((cvs) => {
@@ -126,9 +127,16 @@ export default {
       });
     },
     render2Pic() {
+      function download(url, name) {
+        const aLink = document.createElement('a');
+        aLink.download = name;
+        aLink.href = url;
+        aLink.target = '_blank';
+        aLink.dispatchEvent(new MouseEvent('click', {}));
+      }
       const { canvas } = this;
-      const imgURL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-      window.open(imgURL);
+      const imgURL = canvas.toDataURL('image/png');
+      download(imgURL, 'a.png');
     },
     render2Pdf() {
       const { canvas } = this;
