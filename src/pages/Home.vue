@@ -34,6 +34,8 @@ export default {
     bottom: 0;
     margin: auto;
     height: 200px;
+    max-width: 480px;/* no */
+    text-align: center;
   }
   .logo {
     height: 100px;
