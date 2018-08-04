@@ -5,12 +5,12 @@
       <a class="option-item" @click.prevent="render2Pdf">导出为PDF</a>
     </div>
     <div class="main">
-      <div class="resume" id="resume" :style="{ zoom: scaleRatio }">
-        <div class="m-column head">
-          <div class="m-column-left head-left">
+      <div class="resume" id="resume">
+        <div class="head">
+          <div class="head-left">
             <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
           </div>
-          <div class="m-column-right head-right">
+          <div class="head-right">
             <h1 class="nickname">
               {{ resume.cnName }}
               <span class="nickname-en">{{ resume.enName }}</span>
@@ -22,7 +22,7 @@
           <div class="m-column-left">
             <h3 class="block-head">工作经历</h3>
           </div>
-          <div class="m-column-right">
+          <div class="m-column-right" data-pc>
             <div class="block-lead"></div>
           </div>
         </div>
@@ -63,6 +63,18 @@
             </ul>
           </div>
           <div class="m-column-right">
+            <h3 class="block-head">教育背景</h3>
+            <div class="block-content">
+               <h4 class="block-content-lead">
+                <p class="title">
+                  {{ resume.education.school }} /
+                  <span class="title-addition">{{ resume.education.period }}</span>
+                  - {{ resume.education.subject }}
+                </p>
+                <b class="addition">{{ resume.education.comment }}</b>
+                <p></p>
+              </h4>
+            </div>
             <h3 class="block-head">专业技能</h3>
             <ul class="skill">
               <li class="skill-item" v-for="(item, index) in resume.skill"
@@ -99,16 +111,13 @@ export default {
     this.$nextTick(() => {
       this.render();
     });
-    window.onresize = () => {
-      this.scaleRatio = window.innerWidth / a4Width;
-    };
   },
   methods: {
     render() {
       const cntElem = document.querySelector('#resume');
       const shareContent = cntElem;// 需要截图的包裹的（原生的）DOM 对象
-      const width = shareContent.offsetWidth + 30; // 获取dom 宽度
-      const height = shareContent.offsetHeight + 30; // 获取dom 高度
+      const width = shareContent.offsetWidth; // 获取dom 宽度
+      const height = shareContent.offsetHeight; // 获取dom 高度
       const canvas = document.createElement('canvas'); // 创建一个canvas节点
       const scale = 4; // 定义任意放大倍数 支持小数
       canvas.width = a4Width; // 定义canvas 宽度 * 缩放
@@ -119,7 +128,6 @@ export default {
         canvas, // 自定义 canvas
         width, // dom 原始宽度
         height,
-        x: -15,
         useCORS: true, // 【重要】开启跨域配置
       };
       html2canvas(shareContent, opts).then((cvs) => {
@@ -143,7 +151,7 @@ export default {
       const contentWidth = canvas.width;
       const contentHeight = canvas.height;
       // a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-      const imgWidth = 555.28;
+      const imgWidth = a4Width;
       // 一页pdf显示html页面生成的canvas高度;
       const pageHeight = (contentWidth / imgWidth) * 841.89;
       // 未生成pdf的html页面高度
@@ -177,7 +185,6 @@ export default {
 <style scoped>
 #app {
   max-width: 100%;
-  min-width: 595.28px;
 }
 .m-column {
   display: flex;
@@ -207,18 +214,20 @@ export default {
 .main {
   width: 100%;
   overflow: auto;
+  background: #f5f5f5;
   -webkit-overflow-scrolling:touch;
 }
 .resume {
   position: relative;
-  padding: 20px 0 0 0;
+  padding: 20px 30px 0 30px;
   width: 595.28px;
   margin: auto;
+  background: #fff;
   &::before {
     content: '';
     display: block;
     width: 90%;
-    height: 20px;
+    height: 15px;
     position: absolute;
     top: 0;
     left: 0;
@@ -228,6 +237,7 @@ export default {
   }
 }
 .head {
+  display: flex;
   padding: 25px 0;
   align-items: center;
   text-align: left;
@@ -248,10 +258,12 @@ export default {
     font-weight: 300;
   }
   &-left {
+    flex: 1;
+    padding-right: 25px;
     text-align: right;
   }
   &-right {
-    text-align: left;
+    width: 55%;
   }
 }
 .block {
@@ -354,11 +366,72 @@ export default {
   }
 }
 .skill {
-  padding: 15px 0;
+  padding: 10px 0;
   text-align: left;
   font-size: 10px;
   &-item {
     margin-top: 4px;
+  }
+}
+
+@media screen and (max-width: 595.28px) {
+  [data-pc] {
+    display: none;
+  }
+  .resume {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .head {
+    padding: 15px 0;
+    .avatar {
+      width: 50px;
+      height: 50px;
+    }
+    .nickname {
+      font-size: 16px;
+      &-en {
+        font-size: 14px;
+      }
+    }
+    .job {
+      font-size: 16px;
+      font-weight: 300;
+    }
+  }
+  .m-column {
+    display: block;
+    &-left {
+      padding-right: 0;
+    }
+    &-right {
+      width: 100%;
+    }
+  }
+  .block-left_lead {
+    padding-top: 20px;
+    &::before, &::after {
+      top: 10px;
+      right: 0;
+    }
+    &::after {
+      top: 8px;
+    }
+  }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    &-item {
+      height: 30px;
+      line-height: 30px;
+      width: 39%;
+      padding-right: 28px;
+      font-size: 10px;
+      &::after {
+        width: 14px;
+        height: 14px;
+      }
+    }
   }
 }
 </style>

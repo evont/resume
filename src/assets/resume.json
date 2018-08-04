@@ -52,13 +52,12 @@
   "education": {
     "school": "广东科学技术职业学院",
     "period": "13.09 - 16.07",
-    "subject": "软件工程（Java 网络编程）"
+    "subject": "软件工程 (Java 网络编程)",
+    "comment": "英语能力：CET 6"
   },
   "skill": [
-    "熟悉JavaScript编程，熟练使用Vue、React、Zepto等前端框架，具有良好的代码规范能力",
+    "熟悉JavaScript编程，熟练使用Vue、React、Zepto等前端框架，熟悉使用Webpack、Gulp等前端工程化工具，熟练使用PostCss、Sass",
     "熟悉使用Koa.js，了解PouchDB的使用，有微信服务开发实践经验",
-    "熟练使用Typescript 基于Egret 引擎进行2D游戏开发，对P2.js 物理引擎熟悉使用并进行过文档翻译",
-    "熟悉使用Webpack、Gulp等前端工程化工具，熟练使用PostCss、Sass",
-    "拥有良好的产品思维，能够分析并改善产品的体验设计"
+    "熟练使用Typescript 基于Egret 引擎进行2D游戏开发，对P2.js 物理引擎熟悉使用并进行过文档翻译"
   ]
 }
