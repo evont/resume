@@ -33,7 +33,8 @@ export default {
     time() {
       const date = new Date();
       const hour = date.getHours();
-      const minute = date.getMinutes();
+      let minute = date.getMinutes();
+      minute = minute < 10 ? `0${minute}` : minute;
       return `${hour}:${minute}`;
     },
   },

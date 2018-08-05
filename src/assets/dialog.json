@@ -1,0 +1,72 @@
+{
+  "dialogs": [
+    {
+      "id": 1,
+      "content": [
+        {
+          "tag": "p",
+          "detail": "test"
+        },
+        {
+          "tag": "b",
+          "detail": "i'm evont"
+        }
+      ],
+      "response": [
+        {
+          "content": "hi",
+          "next": 2
+        },
+        {
+          "content": "hello",
+          "next": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "content": [
+        {
+          "tag": "p",
+          "text": "i'm a frontend programmer"
+        },
+        {
+          "tag": "p",
+          "text": "as u can see, there's lot of fun here"
+        }
+      ],
+      "response": [
+        {
+          "content": "well?",
+          "next": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "content": [
+        {
+          "tag": "p",
+          "detail": "hello there"
+        },
+        {
+          "tag": "p",
+          "detail": "and let's cut the chat"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "content": [
+        {
+          "tag": "p",
+          "detail": "time's up"
+        },
+        {
+          "tag": "p",
+          "detail": "maybe u can call me for a long talk"
+        }
+      ]
+    }
+  ]
+}
