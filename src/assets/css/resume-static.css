@@ -1,0 +1,254 @@
+.static {
+  &-option {
+    box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    &-item {
+      display: inline-block;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-right: 1px solid #eee;/* no */
+      font-size: 12px;
+    }
+  }
+  &-main {
+    width: 100%;
+    overflow: auto;
+    background: #f5f5f5;
+    -webkit-overflow-scrolling:touch;
+  }
+  &-resume {
+    position: relative;
+    padding: 20px 30px 0 30px;
+    width: 595.28px;
+    margin: auto;
+    background: #fff;
+    &::before {
+      content: '';
+      display: block;
+      width: 90%;
+      height: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background: #333;
+    }
+  }
+  &-column {
+    display: flex;
+    &-left {
+      flex: 1;
+      padding-right: 25px;
+      text-align: right;
+    }
+    &-right {
+      width: 55%;
+      text-align: right;
+    }
+    &.block {
+      margin-top: 10px;
+    }
+  }
+  &-head {
+    display: flex;
+    padding: 25px 0;
+    align-items: center;
+    text-align: left;
+    .avatar {
+      width: 100px;
+      height: 100px;
+    }
+    .nickname {
+      font-size: 24px;
+      font-weight: 500;
+      &-en {
+        margin-left: 10px;
+        font-size: 20px;
+      }
+    }
+    .job {
+      font-size: 16px;
+      font-weight: 300;
+    }
+    &-left {
+      flex: 1;
+      padding-right: 25px;
+      text-align: right;
+    }
+    &-right {
+      width: 55%;
+    }
+  }
+
+  &-block {
+    &-head {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 0 0 20px;
+      border-bottom: 2px solid #333;/* no */
+      text-align: right;
+    }
+    &-lead {
+      height: 30px;
+      border-bottom: 1px solid #ccc;/* no */
+    }
+    &-content {
+      padding: 10px 0;
+      font-size: 10px;
+      .lead {
+        font-weight: 400;
+        .title {
+          font-weight: 500;
+          &-addition {
+            font-weight: 400;
+          }
+        }
+      }
+      .desc {
+        text-align: left;
+        .title {
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px;
+        }
+        ol.content {
+          padding-left: 10px;
+          li + li {
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+    &-left { 
+      &_lead {
+        padding-top: 30px;
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          right: 5%;
+        }
+        &::before {
+          top: 14px;
+          height: 1px;/* no */
+          width: 95%;
+          background: #ccc;
+        }
+        &::after {
+          width: 6px;
+          height: 6px;
+          top: 12px;
+          border-radius: 50%;
+          background: #666;
+        }
+      }
+    }
+  }
+  &-skill {
+    padding: 10px 0;
+    text-align: left;
+    font-size: 10px;
+    &-item {
+      margin-top: 4px;
+    }
+  }
+  &-contact {
+    padding: 10px 0;
+    &-item {
+      height: 40px;
+      line-height: 40px;
+      padding-right: 36px;
+      font-size: 12px;
+      &::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 24px;
+        width: 24px;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      &[data-type='email']::after {
+        background-image: url('../img/icon-mail.svg');
+      }
+      &[data-type='phone']::after {
+        background-image: url('../img/icon-phone.svg');
+      }
+      &[data-type='blog']::after {
+        background-image: url('../img/icon-link.svg');
+      }
+      &[data-type='github']::after {
+        background-image: url('../img/icon-github.svg');
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 595.28px) {
+  [data-pc] {
+    display: none;
+  }
+  .static {
+    &-resume {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    &-column {
+      display: block;
+      &-left {
+        padding-right: 0;
+      }
+      &-right {
+        width: 100%;
+      }
+    }
+    &-head {
+      padding: 15px 0;
+      .avatar {
+        width: 50px;
+        height: 50px;
+      }
+      .nickname {
+        font-size: 16px;
+        &-en {
+          font-size: 14px;
+        }
+      }
+      .job {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+    &-block {
+      &-left_lead {
+        padding-top: 20px;
+        &::before, &::after {
+          top: 10px;
+          right: 0;
+        }
+        &::after {
+          top: 8px;
+        }
+      }
+    }
+    &-contact {
+      display: flex;
+      flex-wrap: wrap;
+      &-item {
+        height: 30px;
+        line-height: 30px;
+        width: 39%;
+        padding-right: 28px;
+        font-size: 10px;
+        &::after {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}

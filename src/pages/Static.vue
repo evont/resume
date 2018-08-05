@@ -1,16 +1,17 @@
 <template>
-  <div class="content">
-    <div class="option">
-      <a class="option-item" @click.prevent="render2Pic">导出为图片</a>
-      <a class="option-item" @click.prevent="render2Pdf">导出为PDF</a>
+  <div class="static">
+    <div class="static-option">
+      <router-link class="static-option-item" to="/Animate">查看动态简历</router-link>
+      <a class="static-option-item" @click.prevent="render2Pic">导出为图片</a>
+      <a class="static-option-item" @click.prevent="render2Pdf">导出为PDF</a>
     </div>
-    <div class="main">
-      <div class="resume" id="resume">
-        <div class="head">
-          <div class="head-left">
+    <div class="static-main">
+      <div class="static-resume" id="resume">
+        <div class="static-head">
+          <div class="static-head-left">
             <img class="avatar" :src="resume.avatar" :alt="`${resume.enName}'s avatar'`">
           </div>
-          <div class="head-right">
+          <div class="static-head-right">
             <h1 class="nickname">
               {{ resume.cnName }}
               <span class="nickname-en">{{ resume.enName }}</span>
@@ -18,19 +19,19 @@
             <h3 class="job">{{ resume.job }}</h3>
           </div>
         </div>
-        <div class="m-column block">
-          <div class="m-column-left">
-            <h3 class="block-head">工作经历</h3>
+        <div class="static-column static-block">
+          <div class="static-column-left">
+            <h3 class="static-block-head">工作经历</h3>
           </div>
-          <div class="m-column-right" data-pc>
-            <div class="block-lead"></div>
+          <div class="static-column-right" data-pc>
+            <div class="static-block-lead"></div>
           </div>
         </div>
         <ul>
-          <li class="m-column block-content"
+          <li class="static-column static-block-content"
             v-for="(item, index) in resume.experience" :key="index">
-            <div class="m-column-left block-left block-left_lead">
-              <h4 class="block-content-lead">
+            <div class="static-column-left static-block-left static-block-left_lead">
+              <h4 class="lead">
                 <p class="title">
                   {{ item.company }} /
                   <span class="title-addition">{{ item.period }}</span>
@@ -38,9 +39,9 @@
                 <b class="addition">{{ item.post }}</b>
               </h4>
             </div>
-            <div class="m-column-right block-right block-right_lead">
+            <div class="static-column-right static-block-right static-block-right_lead">
               <ul>
-                <li class="block-content-desc" v-for="(exp, eInd) in item.project" :key="eInd">
+                <li class="desc" v-for="(exp, eInd) in item.project" :key="eInd">
                   <h3 class="title">{{ exp.name }}</h3>
                   <ol class="content">
                     <li v-for="(desc, dInd) in exp.desc" :key="dInd">
@@ -52,20 +53,20 @@
             </div>
           </li>
         </ul>
-        <div class="m-column block">
-          <div class="m-column-left">
-            <h3 class="block-head">联系方式</h3>
-            <ul class="contact">
-              <li class="contact-item" v-for="(item, index) in resume.contact"
+        <div class="static-column block">
+          <div class="static-column-left">
+            <h3 class="static-block-head">联系方式</h3>
+            <ul class="static-contact">
+              <li class="static-contact-item" v-for="(item, index) in resume.contact"
                   :key="index" :data-type="index">
                 {{ item }}
               </li>
             </ul>
           </div>
-          <div class="m-column-right">
-            <h3 class="block-head">教育背景</h3>
-            <div class="block-content">
-               <h4 class="block-content-lead">
+          <div class="static-column-right">
+            <h3 class="static-block-head">教育背景</h3>
+            <div class="static-block-content">
+               <h4 class="lead">
                 <p class="title">
                   {{ resume.education.school }} /
                   <span class="title-addition">{{ resume.education.period }}</span>
@@ -75,9 +76,9 @@
                 <p></p>
               </h4>
             </div>
-            <h3 class="block-head">专业技能</h3>
-            <ul class="skill">
-              <li class="skill-item" v-for="(item, index) in resume.skill"
+            <h3 class="static-block-head">专业技能</h3>
+            <ul class="static-skill">
+              <li class="static-skill-item" v-for="(item, index) in resume.skill"
                   :key="index" :data-type="index">
                 {{ item }}
               </li>
@@ -182,256 +183,6 @@ export default {
 };
 </script>
 
-<style scoped>
-#app {
-  max-width: 100%;
-}
-.m-column {
-  display: flex;
-  &-left {
-    flex: 1;
-    padding-right: 25px;
-    text-align: right;
-  }
-  &-right {
-    width: 55%;
-    text-align: right;
-  }
-  &.block {
-    margin-top: 10px;
-  }
-}
-.option {
-  box-shadow: 0 0 2px rgba(0,0,0,0.25);
-  &-item {
-    display: inline-block;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-right: 1px solid #eee;/* no */
-    font-size: 12px;
-  }
-}
-.main {
-  width: 100%;
-  overflow: auto;
-  background: #f5f5f5;
-  -webkit-overflow-scrolling:touch;
-}
-.resume {
-  position: relative;
-  padding: 20px 30px 0 30px;
-  width: 595.28px;
-  margin: auto;
-  background: #fff;
-  &::before {
-    content: '';
-    display: block;
-    width: 90%;
-    height: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background: #333;
-  }
-}
-.head {
-  display: flex;
-  padding: 25px 0;
-  align-items: center;
-  text-align: left;
-  .avatar {
-    width: 100px;
-    height: 100px;
-  }
-  .nickname {
-    font-size: 24px;
-    font-weight: 500;
-    &-en {
-      margin-left: 10px;
-      font-size: 20px;
-    }
-  }
-  .job {
-    font-size: 16px;
-    font-weight: 300;
-  }
-  &-left {
-    flex: 1;
-    padding-right: 25px;
-    text-align: right;
-  }
-  &-right {
-    width: 55%;
-  }
-}
-.block {
-  &-head {
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 0 0 20px;
-    border-bottom: 2px solid #333;/* no */
-    text-align: right;
-  }
-  &-lead {
-    height: 30px;
-    border-bottom: 1px solid #ccc;/* no */
-  }
-  &-content {
-    padding: 10px 0;
-    font-size: 10px;
-    &-lead {
-      font-weight: 400;
-      .title {
-        font-weight: 500;
-        &-addition {
-          font-weight: 400;
-        }
-      }
-    }
-    &-desc {
-      text-align: left;
-      .title {
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-      }
-      ol.content {
-        padding-left: 10px;
-        li + li {
-          margin-top: 4px;
-        }
-      }
-    }
-  }
-  &-left {
-
-    &_lead {
-      padding-top: 30px;
-      &::before, &::after {
-        content: '';
-        position: absolute;
-        right: 5%;
-      }
-      &::before {
-        top: 14px;
-        height: 1px;/* no */
-        width: 95%;
-        background: #ccc;
-      }
-      &::after {
-        width: 6px;
-        height: 6px;
-        top: 12px;
-        border-radius: 50%;
-        background: #666;
-      }
-    }
-  }
-}
-.contact {
-  padding: 10px 0;
-  &-item {
-    height: 40px;
-    line-height: 40px;
-    padding-right: 36px;
-    font-size: 12px;
-    &::after {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      height: 24px;
-      width: 24px;
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-    &[data-type='email']::after {
-      background-image: url('../assets/img/icon-mail.svg');
-    }
-    &[data-type='phone']::after {
-      background-image: url('../assets/img/icon-phone.svg');
-    }
-    &[data-type='blog']::after {
-      background-image: url('../assets/img/icon-link.svg');
-    }
-    &[data-type='github']::after {
-      background-image: url('../assets/img/icon-github.svg');
-    }
-  }
-}
-.skill {
-  padding: 10px 0;
-  text-align: left;
-  font-size: 10px;
-  &-item {
-    margin-top: 4px;
-  }
-}
-
-@media screen and (max-width: 595.28px) {
-  [data-pc] {
-    display: none;
-  }
-  .resume {
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .head {
-    padding: 15px 0;
-    .avatar {
-      width: 50px;
-      height: 50px;
-    }
-    .nickname {
-      font-size: 16px;
-      &-en {
-        font-size: 14px;
-      }
-    }
-    .job {
-      font-size: 16px;
-      font-weight: 300;
-    }
-  }
-  .m-column {
-    display: block;
-    &-left {
-      padding-right: 0;
-    }
-    &-right {
-      width: 100%;
-    }
-  }
-  .block-left_lead {
-    padding-top: 20px;
-    &::before, &::after {
-      top: 10px;
-      right: 0;
-    }
-    &::after {
-      top: 8px;
-    }
-  }
-  .contact {
-    display: flex;
-    flex-wrap: wrap;
-    &-item {
-      height: 30px;
-      line-height: 30px;
-      width: 39%;
-      padding-right: 28px;
-      font-size: 10px;
-      &::after {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  }
-}
+<style>
+  @import '../assets/css/resume-static.css';
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="lauch">
-    <div class="logo" :data-status="isMounted ? 1 : 0"></div>
-    <div class="option" :data-status="isMounted ? 1 : 0">
-      <router-link class="option-link" to="/Animate">查看动态简历</router-link>
-      <router-link class="option-link" to="/Static">查看静态简历</router-link>
+  <div class="home">
+    <div class="home-logo" :data-status="isMounted ? 1 : 0"></div>
+    <div class="home-option" :data-status="isMounted ? 1 : 0">
+      <router-link class="home-option-link" to="/Animate">查看动态简历</router-link>
+      <router-link class="home-option-link" to="/Static">查看静态简历</router-link>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="postcss" scoped>
-  .lauch {
+  .home {
     position: absolute;
     left: 0;
     right: 0;
@@ -36,34 +36,34 @@ export default {
     height: 200px;
     max-width: 480px;/* no */
     text-align: center;
-  }
-  .logo {
-    height: 100px;
-    width: 100px;
-    margin: 20px auto;
-    background: url('../assets/img/logo.png') no-repeat center;
-    background-size: contain;
-    opacity: 0;
-    transform: translate(0, 20px);
-    transition: all .6s;
-    &[data-status='1'] {
-      opacity: 1;
-      transform: translate(0, 0);
+    &-logo {
+      height: 100px;
+      width: 100px;
+      margin: 20px auto;
+      background: url('../assets/img/logo.png') no-repeat center;
+      background-size: contain;
+      opacity: 0;
+      transform: translate(0, 20px);
+      transition: all .6s;
+      &[data-status='1'] {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
     }
-  }
-  .option {
-    padding: 20px 0;
-    opacity: 0;
-    transform: translate(0, -20px);
-    transition: all .6s .6s;
-    &[data-status='1'] {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
+    &-option {
+      padding: 20px 0;
+      opacity: 0;
+      transform: translate(0, -20px);
+      transition: all .6s .6s;
+      &[data-status='1'] {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
 
-    &-link {
-      padding: 0 10px;
-      color: #369;
+      &-link {
+        padding: 0 10px;
+        color: #369;
+      }
     }
   }
 </style>
