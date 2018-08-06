@@ -94,7 +94,7 @@
 import html2canvas from 'html2canvas';
 import JsPDF from 'jspdf';
 
-import resume from '../assets/resume.json';
+import resume from '../data/resume.json';
 
 const a4Width = 595.28;
 const a4Height = 841.89;

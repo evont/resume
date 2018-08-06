@@ -2,10 +2,10 @@
   <div class="m-reply">
     <div class="u-dialog" data-isquestion="1" is="transition-group" name="reply-dialog">
       <div class="detail"
-            v-for="(item, index) in replies"
-            :key="index"
-            @click="emitReply(item)"
-            v-html="htmlContent(item)">
+        v-for="(item, index) in replies"
+        :key="index"
+        @click="emitReply(item)"
+        v-html="htmlContent(item)">
       </div>
     </div>
   </div>
@@ -15,11 +15,6 @@
 export default {
   name: 'Reply',
   props: ['replies'],
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    };
-  },
   methods: {
     emitReply(item) {
       this.$emit('reply', item);

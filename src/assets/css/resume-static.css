@@ -173,16 +173,16 @@
         background-size: contain;
       }
       &[data-type='email']::after {
-        background-image: url('../img/icon-mail.svg');
+        background-image: url('/static/img/icon-mail.svg');
       }
       &[data-type='phone']::after {
-        background-image: url('../img/icon-phone.svg');
+        background-image: url('/static/img/icon-phone.svg');
       }
       &[data-type='blog']::after {
-        background-image: url('../img/icon-link.svg');
+        background-image: url('/static/img/icon-link.svg');
       }
       &[data-type='github']::after {
-        background-image: url('../img/icon-github.svg');
+        background-image: url('/static/img/icon-github.svg');
       }
     }
   }
