@@ -1,10 +1,8 @@
 <template>
-  <transition
-      name="tst-dialog" mode="out-in" tag="div"
-    >
   <div class="u-dialog" :data-isreply="type === 'reply' ? 1 : 0">
     <transition
       name="tst-dialog" mode="out-in" tag="div"
+      v-on:enter="onEnter"
     >
       <div v-if="isLoading"
         class="detail"
@@ -24,7 +22,6 @@
         v-html="htmlContent"></div>
     </transition>
   </div>
-  </transition>
 </template>
 
 <script>
@@ -43,10 +40,15 @@ export default {
     this.isLoading = this.type !== 'reply';
   },
   mounted() {
-    const delay = parseInt(Math.random() * 200, 10) + 300;
+    const delay = parseInt(Math.random() * 200, 10);
     setTimeout(() => {
       this.isLoading = false;
     }, delay);
+  },
+  methods: {
+    onEnter(el) {
+      el.scrollIntoView();
+    },
   },
   computed: {
     htmlContent() {

@@ -14,11 +14,13 @@
       ],
       "response": [
         {
-          "content": "hi",
+          "tag": "p",
+          "detail": "hi",
           "next": 2
         },
         {
-          "content": "hello",
+          "tag": "p",
+          "detail": "hello",
           "next": 3
         }
       ]
@@ -28,16 +30,17 @@
       "content": [
         {
           "tag": "p",
-          "text": "i'm a frontend programmer"
+          "detail": "i'm a frontend programmer"
         },
         {
           "tag": "p",
-          "text": "as u can see, there's lot of fun here"
+          "detail": "as u can see, there's lot of fun here"
         }
       ],
       "response": [
         {
-          "content": "well?",
+          "tag": "p",
+          "detail": "well?",
           "next": 4
         }
       ]
