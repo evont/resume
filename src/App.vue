@@ -27,6 +27,9 @@ a {
 ul {
   list-style: none;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 #app {
   height: 100%;
   min-width: 320px;/* no */
