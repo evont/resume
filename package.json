@@ -1,7 +1,7 @@
 {
   "name": "resume-2018",
   "version": "1.0.0",
-  "description": "2018's resume",
+  "description" : "2018's resume",
   "author": "Evont",
   "private": true,
   "scripts": {

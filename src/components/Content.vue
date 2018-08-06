@@ -5,13 +5,13 @@
         name="tst-dialog" mode="out-in" tag="div"
         v-on:after-enter="onMsgEnter"
       >
-        <dialog-item
+        <Dialog
           v-for="(item, index) in dialogs"
           v-if="item"
           :key="index"
           :content="item"
           :type="item.type || 'normal'">
-        </dialog-item>
+        </Dialog>
       </transition-group>
     </div>
     <reply :replies="replies" v-on:reply="onReply"></reply>
@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import DialogItem from './DialogItem';
+import Dialog from './Dialog';
 import Reply from './Reply';
-import dialog from '../assets/dialog.json';
+import dialog from '../data/dialog';
 
 export default {
   name: 'Content',
@@ -31,41 +31,52 @@ export default {
       dialogs: [],
       content: [],
       info: {},
-      i: 0,
+      lastUpdated: false,
     };
   },
   created() {
     this.loadDialog(1);
   },
   components: {
-    DialogItem, Reply,
+    Dialog, Reply,
   },
   methods: {
     onReply(item) {
       const nextId = item.next;
       this.addMsg(item, true);
       this.replies = [];
-      this.loadDialog(nextId, 800);
+      setTimeout(() => {
+        this.loadDialog(nextId);
+      }, 800);
     },
-    loadDialog(id, timeout = 0) {
+    loadDialog(id) {
       const info = dialog.dialogs.find(item => item.id === id);
       const content = info ? info.content : [];
       this.info = info;
-      this.i = 0;
-      setTimeout(() => {
-        this.addMsg(content[this.i]);
-      }, timeout);
+      this.sequence(content);
     },
-    onMsgEnter() {
-      this.i += 1;
-      setTimeout(() => {
-        this.addMsg(this.info.content[this.i]);
-        if (this.i === this.info.content.length) {
-          if (this.info.response) {
+    sequence(tasks) {
+      for (let index = 0, len = tasks.length + 1; index < len; index += 1) {
+        setTimeout(() => {
+          const item = this.info.content[index];
+          if (item) {
+            this.addMsg(item);
+          }
+          if (index === this.info.content.length && this.info.response) {
             this.replies = this.info.response;
           }
-        }
-      }, 1400);
+        }, 1600 * index);
+      }
+    },
+    onMsgEnter() {
+      // const index = this.i;
+      // if (index === this.info.content.length && this.info.response){
+      //   this.replies = this.info.response;
+      // }
+      // const item = this.info.content[index];
+      // if (item) {
+      //   this.addMsg(item);
+      // }
     },
     addMsg(msg, isReply = false) {
       const message = msg;
