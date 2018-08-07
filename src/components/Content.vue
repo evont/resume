@@ -1,9 +1,8 @@
 <template>
   <div class="m-content">
-    <div class="m-dialog">
+    <div class="j-dialog m-dialog">
       <transition-group
         name="tst-dialog" mode="out-in" tag="div"
-        v-on:after-enter="onMsgEnter"
       >
         <Dialog
           v-for="(item, index) in dialogs"
@@ -65,18 +64,8 @@ export default {
           if (index === this.info.content.length && this.info.response) {
             this.replies = this.info.response;
           }
-        }, 1600 * index);
+        }, 2000 * index);
       }
-    },
-    onMsgEnter() {
-      // const index = this.i;
-      // if (index === this.info.content.length && this.info.response){
-      //   this.replies = this.info.response;
-      // }
-      // const item = this.info.content[index];
-      // if (item) {
-      //   this.addMsg(item);
-      // }
     },
     addMsg(msg, isReply = false) {
       const message = msg;

@@ -3,7 +3,7 @@
     <div class="animate-main">
       <div class="animate-phone">
         <div class="shell" data-pc></div>
-        <div class="screen">
+        <div class="j-screen screen">
           <Content></Content>
         </div>
         <div class="header" data-pc>
