@@ -120,14 +120,16 @@
 
 .m {
   &-content {
+    height: 100%;
+    overflow: hidden;
     padding: 10px 0;
+  }
+  &-dialog {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 50px;
     -webkit-overflow-scrolling:touch;
-  }
-  &-dialog {
-    overflow: hidden;
     border-radius: 32px;
   } 
   &-reply {
@@ -179,7 +181,7 @@
     .detail {
       display: inline-block;
       padding: 10px 14px;
-      max-width: 200px;
+      max-width: 95%;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -187,6 +189,7 @@
       background-color: #fff;
       font-size: 12px;
       &[data-tag='img'] {
+        max-width: 200px;
         padding: 0;
         overflow: hidden;
         img {

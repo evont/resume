@@ -2,7 +2,9 @@
   <div class="u-dialog" :data-isreply="type === 'reply' ? 1 : 0">
     <transition
       name="tst-dialog" mode="out-in" tag="div"
-      v-on:enter="onEnter"
+      v-on:before-enter="scrollView"
+      v-on:enter="scrollView"
+      v-on:before-leave="scrollView"
     >
       <div v-if="isLoading"
         class="detail"
@@ -41,19 +43,29 @@ export default {
     }, delay);
   },
   methods: {
-    onEnter(el) {
-      el.scrollIntoView();
+    scrollView() {
+      // el.scrollIntoView({
+      //   block: 'end',
+      //   behavior: 'smooth',
+      // });
+      const $dialog = document.querySelector('.j-dialog');
+      $dialog.scrollTop = $dialog.scrollHeight;
     },
   },
   computed: {
     htmlContent() {
       const { content } = this;
-      let result = `<${content.tag}>${content.detail}</${content.tag}>`;
+      let contentWidth = '100%';
+      const maxWidth = document.querySelector('.j-screen').offsetWidth;
+      if (content.detail.length > 20 && content.detail.length < 55) {
+        contentWidth = `${(content.detail.length / 55) * maxWidth * 0.9}px`;
+      }
+      let result = `<${content.tag} style="width: ${contentWidth}">${content.detail}</${content.tag}>`;
       if (/img/i.test(content.tag)) {
         result = `<img src=${content.detail} >`;
       }
       if (/a/i.test(content.tag)) {
-        result = `<${content.tag} href="${content.link}">${content.detail}</${content.tag}>`;
+        result = `<${content.tag} href="${content.link}" target="_black" style="width: ${contentWidth}">${content.detail}</${content.tag}>`;
       }
       return result;
     },
