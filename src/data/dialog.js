@@ -1,10 +1,31 @@
+// 根据时间进行问好
 const hour = new Date().getHours();
 let greet = '早上';
-if (hour > 18) {
+if (hour > 18 || hour < 6) {
   greet = '晚上';
 } else if (hour > 12) {
   greet = '下午';
 }
+/**
+ * 动态简历对话数据，格式如下:
+ * {
+ *  id: 当前对话id，用于回复时查找对应对话标志
+ *  content: [ // 此次回复的内容，数组，任意设置回复对话
+ *    {
+ *      tag: 'p', // 标签，可根据爱好设置样式
+ *      link: '' // 当tag 为a 时为链接地址
+ *      detail: ‘’ // 回复内容，当为tag 为img时为图片地址
+ *    }
+ *  ],
+ *  response: [
+ *  {
+ *      tag: 'p', //同content
+ *      detail: '聊下你的工作吧', //同content
+ *      next: 2, //回复对应的对话id
+ *  },
+ *  ]
+ * }
+ */
 export default {
   dialogs: [
     {
