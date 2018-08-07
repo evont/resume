@@ -1,30 +1,21 @@
-# resume-2018
+# 简历
 
-> 2018's resume
+## Preview
+[http://evont.github.io/resume/2018/](http://evont.github.io/resume/2018/)
 
-## Build Setup
+## Intro
+一直没有好好写一份在线简历，于是设计了一份静态简历和一份交互式简历，这份简历有以下功能点：
+- 静态简历可以导出图片或pdf，并根据屏幕大小进行自适应调整
+- 动态简历以对话形式，可以根据选择的问题回复相应的内容，类似于面试的对话
 
-``` bash
-# install dependencies
-npm install
+## Usage
+1. 先Star/Fork本项目，然后Clone或者直接下载到本地
+2. 静态简历修改resume.json 对应的字段，动态简历修改dialog.js 里面的内容
+3. 根据自己的喜好调整样式
+4. 部署发布或生成pdf
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Todo
+1. 优化对话框自动调节宽度
+2. 优化动态简历交互
+3. 修复导出为pdf 或图片时，部分图片模糊问题
+4. 对话新增emoji形式
