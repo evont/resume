@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content.vue Should have the expected html structure 1`] = `
+<div
+  class="m-content"
+>
+  <div
+    class="j-dialog m-dialog"
+  >
+    <span
+      mode="out-in"
+      name="tst-dialog"
+      tag="div"
+    />
+  </div>
+   
+  <div
+    class="m-reply"
+  >
+    <div
+      class="u-dialog"
+      data-isquestion="1"
+    />
+  </div>
+</div>
+`;

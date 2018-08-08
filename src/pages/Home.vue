@@ -17,9 +17,7 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      this.isMounted = true;
-    });
+    this.isMounted = true;
   },
 };
 </script>

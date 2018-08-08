@@ -2,8 +2,8 @@
   <div class="static">
     <div class="static-option">
       <router-link class="static-option-item" to="/Animate">查看动态简历</router-link>
-      <a class="static-option-item" @click.prevent="render2Pic">导出为图片</a>
-      <a class="static-option-item" @click.prevent="render2Pdf">导出为PDF</a>
+      <a class="static-option-item" data-type="pic" @click.prevent="render2Pic">导出为图片</a>
+      <a class="static-option-item" data-type="pdf" @click.prevent="render2Pdf">导出为PDF</a>
     </div>
     <div class="static-main">
       <div class="static-resume" id="resume">
@@ -105,7 +105,6 @@ export default {
     return {
       resume,
       canvas: null,
-      scaleRatio: 1,
     };
   },
   mounted() {
@@ -115,25 +114,26 @@ export default {
   },
   methods: {
     render() {
-      const cntElem = document.querySelector('#resume');
-      const shareContent = cntElem;// 需要截图的包裹的（原生的）DOM 对象
-      const width = shareContent.offsetWidth; // 获取dom 宽度
-      const height = shareContent.offsetHeight; // 获取dom 高度
-      const canvas = document.createElement('canvas'); // 创建一个canvas节点
-      const scale = 4; // 定义任意放大倍数 支持小数
-      canvas.width = a4Width; // 定义canvas 宽度 * 缩放
-      canvas.height = a4Height; // 定义canvas高度 *缩放
-      canvas.getContext('2d').scale(scale, scale); // 获取context,设置scale
-      const opts = {
-        scale, // 添加的scale 参数
-        canvas, // 自定义 canvas
-        width, // dom 原始宽度
-        height,
-        useCORS: true, // 【重要】开启跨域配置
-      };
-      html2canvas(shareContent, opts).then((cvs) => {
-        this.canvas = cvs;
-      });
+      const shareContent = document.querySelector('#resume');
+      if (shareContent) {
+        const width = shareContent.offsetWidth; // 获取dom 宽度
+        const height = shareContent.offsetHeight; // 获取dom 高度
+        const canvas = document.createElement('canvas'); // 创建一个canvas节点
+        const scale = 4; // 定义任意放大倍数 支持小数
+        canvas.width = a4Width; // 定义canvas 宽度 * 缩放
+        canvas.height = a4Height; // 定义canvas高度 *缩放
+        canvas.getContext('2d').scale(scale, scale); // 获取context,设置scale
+        const opts = {
+          scale, // 添加的scale 参数
+          canvas, // 自定义 canvas
+          width, // dom 原始宽度
+          height,
+          useCORS: true, // 【重要】开启跨域配置
+        };
+        html2canvas(shareContent, opts).then((cvs) => {
+          this.canvas = cvs;
+        });
+      }
     },
     render2Pic() {
       function download(url, name) {
