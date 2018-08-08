@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reply.vue Should have the expected html structure 1`] = `
+<div
+  class="m-reply"
+>
+  <div
+    class="u-dialog"
+    data-isquestion="1"
+    name="reply-dialog"
+  >
+    <div
+      class="detail"
+    >
+      <p>
+        abacadabara
+      </p>
+    </div>
+  </div>
+</div>
+`;

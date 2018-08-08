@@ -1,10 +1,12 @@
-// 根据时间进行问好
-const hour = new Date().getHours();
-let greet = '早上';
-if (hour > 18 || hour < 6) {
-  greet = '晚上';
-} else if (hour > 12) {
-  greet = '下午';
+function getGreet(hour) {
+  // 根据时间进行问好
+  let greet = '早上';
+  if (hour > 18 || hour < 6) {
+    greet = '晚上';
+  } else if (hour > 12) {
+    greet = '下午';
+  }
+  return greet;
 }
 /**
  * 动态简历对话数据，格式如下:
@@ -27,13 +29,14 @@ if (hour > 18 || hour < 6) {
  * }
  */
 export default {
+  getGreet,
   dialogs: [
     {
       id: 1,
       content: [
         {
           tag: 'p',
-          detail: `${greet}好`,
+          detail: `${getGreet(new Date().getHours())}好`,
         },
         {
           tag: 'p',

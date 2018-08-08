@@ -26,7 +26,7 @@ import Loading from './Loading';
 
 export default {
   name: 'Dialog',
-  props: ['content', 'index', 'type'],
+  props: ['content', 'type'],
   components: { Loading },
   data() {
     return {
@@ -44,10 +44,6 @@ export default {
   },
   methods: {
     scrollView() {
-      // el.scrollIntoView({
-      //   block: 'end',
-      //   behavior: 'smooth',
-      // });
       const $dialog = document.querySelector('.j-dialog');
       $dialog.scrollTop = $dialog.scrollHeight;
     },
@@ -56,9 +52,12 @@ export default {
     htmlContent() {
       const { content } = this;
       let contentWidth = '100%';
-      const maxWidth = document.querySelector('.j-screen').offsetWidth;
-      if (content.detail.length > 20 && content.detail.length < 55) {
-        contentWidth = `${(content.detail.length / 55) * maxWidth * 0.9}px`;
+      const $screen = document.querySelector('.j-screen');
+      if ($screen) {
+        const maxWidth = document.querySelector('.j-screen').offsetWidth;
+        if (content.detail.length > 20 && content.detail.length < 55) {
+          contentWidth = `${(content.detail.length / 55) * maxWidth * 0.9}px`;
+        }
       }
       let result = `<${content.tag} style="width: ${contentWidth}">${content.detail}</${content.tag}>`;
       if (/img/i.test(content.tag)) {

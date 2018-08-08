@@ -4,7 +4,7 @@
       <div class="detail"
         v-for="(item, index) in replies"
         :key="index"
-        @click="emitReply(item)"
+        @click="$emit('reply', item);"
         v-html="htmlContent(item)">
       </div>
     </div>
@@ -16,9 +16,6 @@ export default {
   name: 'Reply',
   props: ['replies'],
   methods: {
-    emitReply(item) {
-      this.$emit('reply', item);
-    },
     htmlContent(content) {
       return `<${content.tag}>${content.detail}</${content.tag}>`;
     },

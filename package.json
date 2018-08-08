@@ -1,7 +1,7 @@
 {
   "name": "resume-2018",
   "version": "1.0.0",
-  "description" : "2018's resume",
+  "description": "2018's resume",
   "author": "Evont",
   "private": true,
   "scripts": {
@@ -76,6 +76,7 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
+    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
