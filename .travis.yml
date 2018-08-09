@@ -1,5 +1,10 @@
-language: node_js
-node_js: stable
-script: npm run unit
+language: 
+  node_js
+node_js: 
+  stable
+install:
+   - npm install -g codecov
+script: 
+  - jest && codecov
 notifications:
   email: false

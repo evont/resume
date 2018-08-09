@@ -20,12 +20,7 @@
 import Content from '../components/Content';
 
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    };
-  },
+  name: 'Anim',
   components: {
     Content,
   },

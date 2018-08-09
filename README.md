@@ -1,3 +1,5 @@
+![build](https://travis-ci.org/evont/resume.svg?branch=master)
+
 ## Preview
 [http://evont.github.io/resume/2018/](http://evont.github.io/resume/2018/)
 

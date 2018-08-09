@@ -132,7 +132,7 @@ export default {
         },
         {
           tag: 'img',
-          detail: '/static/img/chat-file/280874B869326FE4DDA722B0A2E8ABD6.jpg',
+          detail: '/static/img/chat-file/709B2210F962E2CA7DA47949E8C540E7.jpg',
         },
         {
           tag: 'a',
