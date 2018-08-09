@@ -13,7 +13,7 @@
         </Dialog>
       </transition-group>
     </div>
-    <reply :replies="replies" v-on:reply="onReply"></reply>
+    <reply :replies="replies" @reply="onReply"></reply>
   </div>
 </template>
 
@@ -30,7 +30,6 @@ export default {
       dialogs: [],
       content: [],
       info: {},
-      lastUpdated: false,
     };
   },
   created() {
@@ -55,14 +54,15 @@ export default {
       this.sequence(content);
     },
     sequence(tasks) {
+      const { info } = this;
       for (let index = 0, len = tasks.length + 1; index < len; index += 1) {
         setTimeout(() => {
-          const item = this.info.content[index];
+          const item = info.content[index];
           if (item) {
             this.addMsg(item);
           }
-          if (index === this.info.content.length && this.info.response) {
-            this.replies = this.info.response;
+          if (index === info.content.length && info.response) {
+            this.replies = info.response;
           }
         }, 2000 * index);
       }
