@@ -1,4 +1,5 @@
 ![build](https://travis-ci.org/evont/resume.svg?branch=master)
+[![codecov](https://codecov.io/gh/evont/resume/branch/master/graph/badge.svg)](https://codecov.io/gh/evont/resume)
 
 ## Preview
 [http://evont.github.io/resume/2018/](http://evont.github.io/resume/2018/)
