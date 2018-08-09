@@ -13,6 +13,10 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
   "dependencies": {
     "gsap": "^2.0.1",
     "html2canvas": "^1.0.0-alpha.12",
