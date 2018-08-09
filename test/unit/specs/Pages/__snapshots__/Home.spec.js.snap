@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home.vue Should have the expected html structure 1`] = `
+<div
+  class="home"
+>
+  <div
+    class="home-logo"
+    data-status="1"
+  />
+   
+  <div
+    class="home-option"
+    data-status="1"
+  >
+    <router-link
+      class="home-option-link"
+      to="/Animate"
+    >
+      查看动态简历
+    </router-link>
+     
+    <router-link
+      class="home-option-link"
+      to="/Static"
+    >
+      查看静态简历
+    </router-link>
+  </div>
+</div>
+`;

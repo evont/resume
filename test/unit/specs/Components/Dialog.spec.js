@@ -1,4 +1,4 @@
-import { mount } from 'vue-test-utils'
+import { mount, TransitionStub } from 'vue-test-utils'
 import Dialog from '@/components/Dialog';
 
 jest.useFakeTimers();
@@ -6,7 +6,18 @@ jest.useFakeTimers();
 describe('Dialog.vue', () => {
   let cmp
   beforeEach(() => {
-    cmp = mount(Dialog)
+    cmp = mount(Dialog, {
+      propsData: {
+        content: {
+          tag: 'a',
+          link: 'https://www.google.com',
+          detail: 'abaracadabara'
+        }
+      },
+      stubs: {
+        transition: TransitionStub
+      }
+    })
   })
   if('should be loaded', () => {
     setTimeout(() => {
@@ -41,5 +52,6 @@ describe('Dialog.vue', () => {
       expect(cmp.find('.detail').contains('img')).toBe(true);
     }, 500)
   });
+
 });
   
