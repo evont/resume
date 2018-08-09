@@ -214,7 +214,7 @@ export default {
         },
         {
           tag: 'img',
-          detail: '/static/img/chat-file/giphy.webp',
+          detail: '/static/img/chat-file/200w.gif',
         },
       ],
     },
