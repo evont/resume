@@ -3,9 +3,8 @@ language:
 node_js: 
   stable
 install:
-   - npm install -g codecov
+  - npm install -g codecov
 script: 
-  npm run unit
-  npm run codecov
+  - jest && codecov
 notifications:
   email: false
