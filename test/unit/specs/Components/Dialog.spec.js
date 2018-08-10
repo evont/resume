@@ -24,6 +24,12 @@ describe('Dialog.vue', () => {
       expect(cmp.vm.isLoading).toBe(false)
     }, 500)
   })
+
+  if('should be emitted', () => {
+    setTimeout(() => {
+      expect(cmp.vm.emitted('loadend')).toBeTruthy()
+    }, 500)
+  })
   it('should be a link', () => {
     const content = {
       tag: 'a',
