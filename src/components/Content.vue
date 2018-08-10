@@ -1,6 +1,6 @@
 <template>
   <div class="m-content">
-    <div class="j-dialog m-dialog">
+    <div class="j-dialog m-dialog" ref="content">
       <transition-group
         name="tst-dialog" mode="out-in" tag="div"
       >
@@ -9,7 +9,9 @@
           v-if="item"
           :key="index"
           :content="item"
-          :type="item.type || 'normal'">
+          :type="item.type || 'normal'"
+          @loadend="scrollEnd"
+        >
         </Dialog>
       </transition-group>
     </div>
@@ -39,6 +41,10 @@ export default {
     Dialog, Reply,
   },
   methods: {
+    scrollEnd() {
+      const $content = this.$refs.content;
+      $content.scrollTop = $content.scrollHeight;
+    },
     onReply(item) {
       const nextId = item.next;
       this.addMsg(item, true);

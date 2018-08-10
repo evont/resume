@@ -44,8 +44,7 @@ export default {
   },
   methods: {
     scrollView() {
-      const $dialog = document.querySelector('.j-dialog');
-      $dialog.scrollTop = $dialog.scrollHeight;
+      this.$emit('loadend');
     },
   },
   computed: {

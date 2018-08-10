@@ -1,5 +1,7 @@
 import Vue from 'vue';
 HTMLCanvasElement.prototype.getContext = () => { 
-  // return whatever getContext has to return
+  return {
+    scale() {}
+  }
 };
 Vue.config.productionTip = false;
