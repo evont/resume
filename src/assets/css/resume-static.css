@@ -159,6 +159,15 @@
       line-height: 40px;
       padding-right: 36px;
       font-size: 12px;
+      img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 24px;
+        width: 24px;
+      }
       &::after {
         content: '';
         display: inline-block;
@@ -251,4 +260,7 @@
       }
     }
   }
+}
+.hide {
+  display: none;
 }
