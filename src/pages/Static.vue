@@ -58,8 +58,9 @@
             <h3 class="static-block-head">联系方式</h3>
             <ul class="static-contact">
               <li class="static-contact-item" v-for="(item, index) in resume.contact"
-                  :key="index" :data-type="index">
+                  :key="index">
                 {{ item }}
+                <img :src="`/static/img/icon-${index}.svg`">
               </li>
             </ul>
           </div>
@@ -87,7 +88,7 @@
         </div>
       </div>
     </div>
-    <canvas ref="cav"></canvas>
+    <canvas ref="cav" class="hide"></canvas>
   </div>
 </template>
 
