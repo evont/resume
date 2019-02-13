@@ -78,7 +78,7 @@
         bottom: 0;
         width: 54px;
         height: 14px;
-        background: url('/static/img/status.png') no-repeat center;
+        background: url('/resume/2018/static/img/status.png') no-repeat center;
         background-size: contain;
       }
       .time {
@@ -207,7 +207,7 @@
           top: 0;
           bottom: 0;
           margin: auto;
-          background: url('/static/img/icon-arrow.svg') no-repeat;
+          background: url('/resume/2018/static/img/icon-arrow.svg') no-repeat;
           background-size: contain;
         }
       }

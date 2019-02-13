@@ -1,5 +1,5 @@
 {
-  "avatar": "/static/img/logo.png",
+  "avatar": "/resume/2018/static/img/logo.png",
   "cnName": "吴怡锋",
   "enName": "Evont Ng",
   "job": "前端开发工程师",
@@ -15,14 +15,29 @@
             "独立负责使用Koa.js 作为中间层进行接口转发以及微信服务开发；使用EJS 及Vue.js 开发前端页面，使得网站SEO友好，渲染效率提高",
             "对原有项目进行重构及前后端同构，优化了原有代码架构，完成了项目的前端工程化，并负责编写测试用例及接口文档，使网站的整体架构变得更加清晰可读，提高了代码复用性",
             "设计错误收集规则，对Node 端发生的报错进行收集上报，并设定报警规则对高频错误进行邮件提醒，使得错误得以及时处理，同时也能及时地发现恶意攻击并进行屏蔽",
-            "使用Egret 引擎开发微信小游戏，负责多个专题活动页面的开发实现"
+            "负责多个H5 专题活动页面的开发实现"
+          ]
+        },
+        {
+          "name": "小程序管理后台",
+          "desc": [
+            "开发小程序信息管理功能，如基本信息修改及查询，是否开启自动回复及自动回复内容设置等",
+            "客服反馈记录功能，将发送到小程序的客服消息根据不同小程序进行聚合，并提供回复功能",
+            "小程序图片上传管理功能，提供对应不同小程序的图片上传功能，并记录生成的media_id，方便回复使用"
+          ]
+        },
+        {
+          "name": "投篮对战",
+          "desc": [
+            "负责整个游戏的开发，包括皮肤中心功能、皮肤技能功能、排行榜及广告接入等",
+            "基于websock 开发了对战模式功能，提供了多用户对战共玩的玩法"
           ]
         }
       ]
     },
     {
       "company": "广州智壹网络科技有限公司",
-      "period": "16.03 - 17.05",
+      "period": "16.06 - 17.05",
       "post": "前端开发工程师 / UI设计师",
       "project": [
         {
@@ -43,6 +58,20 @@
       ]
     }
   ],
+  "opensource": [
+    {
+      "name": "Koa SSR 中间件",
+      "desc": "基于Koa 的SSR 中间件，用于快速接入极速部署SSR 功能，包括Vue 及 React 版本, Vue 版本地址： <a href='https://github.com/evont/koa-vuessr-middleware'>https://github.com/evont/koa-vuessr-middleware</a>， React 版本地址为：<a href='https://github.com/evont/koa-reactssr-middleware'>https://github.com/evont/koa-reactssr-middleware</a>"
+    },
+    {
+      "name": "Gulp 单文件组件插件",
+      "desc": "Gulp-SFC-loader 是一个使用单文件组件思想，用于方便传统HTML 项目进行模块化，同时完成內联js 及css编译及抽离的gulp 插件。项目地址为：<a href='https://github.com/evont/gulp-sfc-loader'>https://github.com/evont/gulp-sfc-loader</a>"
+    },
+    {
+      "name": "日语用例查询小程序",
+      "desc": "日语用例助手是基于Taro开发的日语单词用法查询小程序，使用小程序云开发功能抓取聚合 用例.jp 网站的数据，项目地址为：<a href='https://github.com/evont/yourei-jp'>https://github.com/evont/yourei-jp</a>"
+    }
+  ],
   "contact": {
     "mail": "evontgoh@foxmail.com",
     "phone": "+86 13169620297",
@@ -58,6 +87,8 @@
   "skill": [
     "熟悉JavaScript编程，熟练使用Vue、React、Zepto等前端框架，熟悉使用Webpack、Gulp等前端工程化工具，熟练使用PostCss、Sass",
     "熟悉使用Koa.js，了解PouchDB的使用，有微信服务开发实践经验",
-    "熟练使用Typescript 基于Egret 引擎进行2D游戏开发，对P2.js 物理引擎熟悉使用并进行过文档翻译"
+    "熟练使用Taro 开发小程序，有云开发能力实践经验",
+    "熟悉基于Linux 的服务器开发，有独立网站服务器开发经验，有基于Jenkins的持续集成开发经验及Docker 开发经验",
+    "熟练使用Typescript 基于Egret 引擎进行多个2D游戏开发经验，有websocket 对战游戏开发经验，对P2.js 物理引擎熟悉使用并进行过文档翻译"
   ]
 }

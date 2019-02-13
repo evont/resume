@@ -40,7 +40,7 @@ export default {
       height: 100px;
       width: 100px;
       margin: 20px auto;
-      background: url('/static/img/logo.png') no-repeat center;
+      background: url('/resume/2018/static/img/logo.png') no-repeat center;
       background-size: contain;
       opacity: 0;
       transform: translate(0, 20px);

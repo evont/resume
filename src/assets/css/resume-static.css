@@ -44,6 +44,13 @@
     &-right {
       width: 55%;
       text-align: right;
+      .desc {
+        padding-top: 16px;
+        text-align: left;
+        a {
+          color: #7d7d7d;
+        }
+      }
     }
     &.block {
       margin-top: 10px;
@@ -182,16 +189,16 @@
         background-size: contain;
       }
       &[data-type='email']::after {
-        background-image: url('/static/img/icon-mail.svg');
+        background-image: url('/resume/2018/static/img/icon-mail.svg');
       }
       &[data-type='phone']::after {
-        background-image: url('/static/img/icon-phone.svg');
+        background-image: url('/resume/2018/static/img/icon-phone.svg');
       }
       &[data-type='blog']::after {
-        background-image: url('/static/img/icon-link.svg');
+        background-image: url('/resume/2018/static/img/icon-link.svg');
       }
       &[data-type='github']::after {
-        background-image: url('/static/img/icon-github.svg');
+        background-image: url('/resume/2018/static/img/icon-github.svg');
       }
     }
   }

@@ -53,6 +53,29 @@
             </div>
           </li>
         </ul>
+        <div class="static-column static-block">
+          <div class="static-column-left">
+            <h3 class="static-block-head">开源项目</h3>
+          </div>
+          <div class="static-column-right" data-pc>
+            <div class="static-block-lead"></div>
+          </div>
+        </div>
+        <ul>
+          <li class="static-column static-block-content"
+            v-for="(item, index) in resume.opensource" :key="index">
+            <div class="static-column-left static-block-left static-block-left_lead">
+              <h4 class="lead">
+                <p class="title">
+                  {{ item.name }}
+                </p>
+              </h4>
+            </div>
+            <div class="static-column-right static-block-right static-block-right_lead">
+              <p v-html="item.desc" class="desc"></p>
+            </div>
+          </li>
+        </ul>
         <div class="static-column block">
           <div class="static-column-left">
             <h3 class="static-block-head">联系方式</h3>
@@ -60,7 +83,7 @@
               <li class="static-contact-item" v-for="(item, index) in resume.contact"
                   :key="index">
                 {{ item }}
-                <img :src="`/static/img/icon-${index}.svg`">
+                <img :src="`/resume/2018/static/img/icon-${index}.svg`">
               </li>
             </ul>
           </div>
@@ -74,7 +97,6 @@
                   - {{ resume.education.subject }}
                 </p>
                 <b class="addition">{{ resume.education.comment }}</b>
-                <p></p>
               </h4>
             </div>
             <h3 class="static-block-head">专业技能</h3>
@@ -153,7 +175,7 @@ export default {
       // 未生成pdf的html页面高度
       let leftHeight = height;
       // 页面偏移
-      let position = 0;
+      let position = 20;
       const imgHeight = (a4Width / width) * height;
       const pageData = canvas.toDataURL('image/jpeg', 1.0);
       // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
