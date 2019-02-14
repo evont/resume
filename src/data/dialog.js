@@ -132,7 +132,7 @@ export default {
         },
         {
           tag: 'img',
-          detail: '/static/img/chat-file/709B2210F962E2CA7DA47949E8C540E7.jpg',
+          detail: '/resume/2018/static/img/chat-file/709B2210F962E2CA7DA47949E8C540E7.jpg',
         },
         {
           tag: 'a',
@@ -185,7 +185,7 @@ export default {
         },
         {
           tag: 'img',
-          detail: '/static/img/chat-file/6D6EFC58BA71A9C4A9FAE26368AB91C8.jpg',
+          detail: '/resume/2018/static/img/chat-file/6D6EFC58BA71A9C4A9FAE26368AB91C8.jpg',
         },
       ],
       response: [
@@ -214,7 +214,7 @@ export default {
         },
         {
           tag: 'img',
-          detail: '/static/img/chat-file/200w.gif',
+          detail: '/resume/2018/static/img/chat-file/200w.gif',
         },
       ],
     },
