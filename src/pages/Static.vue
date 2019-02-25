@@ -171,22 +171,22 @@ export default {
       const { canvas } = this;
       const { width, height } = canvas;
       // 一页pdf显示html页面生成的canvas高度;
-      const pageHeight = (width / a4Width) * 841.89;
+      const pageHeight = (width / a4Width) * a4Height;
       // 未生成pdf的html页面高度
       let leftHeight = height;
       // 页面偏移
-      let position = 20;
+      let position = 0;
       const imgHeight = (a4Width / width) * height;
       const pageData = canvas.toDataURL('image/jpeg', 1.0);
       // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
       // 当内容未超过pdf一页显示的范围，无需分页
       if (leftHeight < pageHeight) {
-        pdf.addImage(pageData, 'JPEG', (a4Width - a4Width) / 2, 0, a4Width, imgHeight);
+        pdf.addImage(pageData, 'JPEG', 0, 0, a4Width, imgHeight);
       } else {
         while (leftHeight > 0) {
-          pdf.addImage(pageData, 'JPEG', (a4Width - a4Width) / 2, position, a4Width, imgHeight);
+          pdf.addImage(pageData, 'JPEG', 0, position, a4Width, imgHeight);
           leftHeight -= pageHeight;
-          position -= 841.89;
+          position -= a4Height;
           // 避免添加空白页
           if (leftHeight > 0) {
             pdf.addPage();
