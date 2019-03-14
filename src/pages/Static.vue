@@ -43,11 +43,11 @@
               <ul>
                 <li class="desc" v-for="(exp, eInd) in item.project" :key="eInd">
                   <h3 class="title">{{ exp.name }}</h3>
-                  <ol class="content">
+                  <ul class="content">
                     <li v-for="(desc, dInd) in exp.desc" :key="dInd">
                       {{ desc }}
                     </li>
-                  </ol>
+                  </ul>
                 </li>
               </ul>
             </div>

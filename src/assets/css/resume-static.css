@@ -45,7 +45,7 @@
       width: 55%;
       text-align: right;
       .desc {
-        padding-top: 12px;
+        padding-top: 8px;
         text-align: left;
         a {
           color: #7d7d7d;
@@ -119,7 +119,8 @@
           line-height: 30px;
           font-size: 14px;
         }
-        ol.content {
+        ul.content {
+          list-style: disc;
           padding-left: 10px;
           li + li {
             margin-top: 4px;
